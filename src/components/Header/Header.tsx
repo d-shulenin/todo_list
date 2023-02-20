@@ -9,7 +9,7 @@ interface HeaderI {
 
 const Header: FC<HeaderI> = ({ date, setModal }) => {
   return (
-    <header className="flex justify-between items-center">
+    <header className="px-7 flex justify-between items-center">
       <button className="w-8 h-8 bg-btn rounded-md flex justify-center items-center cursor-pointer shadow-button active:scale-95">
         <img className="w-4/6" src={filter} alt="filter"></img>
       </button>
