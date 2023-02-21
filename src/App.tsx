@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
-import Modal from "./components/Modal/Modal";
-import Column from "./components/Column/Column";
+import Frontside from "./components/Frontside/Frontside";
+import Backside from "./components/Backside/Backside";
 import { getDate } from "./utilities/getDate";
 
 export interface TodoI {
   id: string;
   text: string;
-  priority: "low" | "medium" | "high";
+  priority: string;
   date: string;
   done: boolean;
 }
@@ -33,14 +32,13 @@ function App() {
             flipped && "rotate-y-180"
           }`}
         >
-          <div className="absolute w-full h-full bg-wr pt-5 pb-10 flex flex-col gap-6 rounded-xl shadow-wrapper backface-visibility-hidden">
-            <Header date={date} setFlipped={setFlipped} />
-            <div className="px-2 grid grid-cols-2 gap-7 flex-grow">
-              <Column type="to do" todos={todos} setTodos={setTodos} />
-              <Column type="done" todos={todos} setTodos={setTodos} />
-            </div>
-          </div>
-          <Modal setFlipped={setFlipped} todos={todos} setTodos={setTodos} />
+          <Frontside
+            date={date}
+            todos={todos}
+            setFlipped={setFlipped}
+            setTodos={setTodos}
+          />
+          <Backside setFlipped={setFlipped} todos={todos} setTodos={setTodos} />
         </div>
       </div>
     </div>
