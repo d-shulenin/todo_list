@@ -1,4 +1,44 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwindcss/plugin");
+
+// Rotate Y utilities
+const rotateY = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".rotate-y-180": {
+      transform: "rotateY(-180deg)",
+    },
+  });
+});
+
+// Transform style utilities
+const transformStyle = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".preserve-3d": {
+      "transform-style": "preserve-3d",
+    },
+  });
+});
+
+// Backface visibility utilities
+const backfaceVisibility = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".backface-visibility-hidden": {
+      "-webkit-backface-visibility": "hidden",
+      "backface-visibility": "hidden",
+    },
+  });
+});
+
+// Perspective utilities
+const perspective = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".perspective-1000": {
+      perspective: "1000px",
+    },
+  });
+});
+
 module.exports = {
   content: ["./src/**/*.{html,ts,tsx}"],
   theme: {
@@ -24,5 +64,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [rotateY, transformStyle, perspective, backfaceVisibility],
 };

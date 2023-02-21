@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Modal from "./components/Modal/Modal";
 import Column from "./components/Column/Column";
+import { getDate } from "./utilities/getDate";
 
 export interface TodoI {
   id: string;
   text: string;
   priority: "low" | "medium" | "high";
-  date: Date;
+  date: string;
   done: boolean;
-  fulfill?: (props: TodoI) => void;
 }
 
 function App() {
@@ -17,12 +17,9 @@ function App() {
     JSON.parse(localStorage.getItem("todos")!) || []
   );
   const [date, setDate] = useState<string>("");
-  const [modal, setModal] = useState<boolean>(false);
+  const [flipped, setFlipped] = useState<boolean>(false);
   useEffect(() => {
-    const now = new Date().toLocaleDateString("en-gb", {
-      month: "long",
-      day: "numeric",
-    });
+    const now = getDate();
     setDate(now);
   }, []);
   useEffect(() => {
@@ -30,19 +27,22 @@ function App() {
   }, [todos]);
   return (
     <div className="w-full h-screen bg-bg flex justify-center items-center text-typo">
-      <div className=" w-2/5 h-85vh pt-5 pb-10 flex flex-col gap-6 bg-wr rounded-xl shadow-wrapper">
-        <Header date={date} setModal={setModal} />
-        <div className="px-2 grid grid-cols-2 gap-7 flex-grow">
-          <Column type="to do" todos={todos} setTodos={setTodos} />
-          <Column type="done" todos={todos} setTodos={setTodos} />
+      <div className="w-2/5 h-85vh perspective-1000">
+        <div
+          className={`relative w-full h-full transition-transform duration-700 preserve-3d ${
+            flipped && "rotate-y-180"
+          }`}
+        >
+          <div className="absolute w-full h-full bg-wr pt-5 pb-10 flex flex-col gap-6 rounded-xl shadow-wrapper backface-visibility-hidden">
+            <Header date={date} setFlipped={setFlipped} />
+            <div className="px-2 grid grid-cols-2 gap-7 flex-grow">
+              <Column type="to do" todos={todos} setTodos={setTodos} />
+              <Column type="done" todos={todos} setTodos={setTodos} />
+            </div>
+          </div>
+          <Modal setFlipped={setFlipped} todos={todos} setTodos={setTodos} />
         </div>
       </div>
-      <Modal
-        modal={modal}
-        setModal={setModal}
-        todos={todos}
-        setTodos={setTodos}
-      ></Modal>
     </div>
   );
 }
