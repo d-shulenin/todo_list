@@ -5,22 +5,26 @@ import { TodoI } from "../../App";
 interface ColumnI {
   type: "to do" | "done";
   todos: TodoI[];
-  setTodos: Dispatch<React.SetStateAction<TodoI[]>>;
+  setTodos?: Dispatch<React.SetStateAction<TodoI[]>>;
+  setFlipped?: Dispatch<React.SetStateAction<boolean>>;
 }
 
-const isDone: { "to do": boolean; done: boolean } = {
+const isDone: Record<string, boolean> = {
   "to do": false,
   done: true,
 };
 
-const Column: FC<ColumnI> = ({ type, todos, setTodos }) => {
+const Column: FC<ColumnI> = ({ type, todos, setTodos, setFlipped }) => {
   const items = useMemo(
     () => todos.filter((todo: TodoI) => todo.done === isDone[type]),
     [todos]
   );
-  function fulfill(props: TodoI) {
-    const restTodos = todos.filter((item) => item.id !== props.id);
-    setTodos([...restTodos, { ...props, done: true }]);
+  function fulfillTodo(props: TodoI): void {
+    const restTodos = todos.filter((todo) => todo.id !== props.id);
+    setTodos!([...restTodos, { ...props, done: true }]);
+  }
+  function deleteTodo(id: string): void {
+    setTodos!(todos.filter((todo) => todo.id !== id));
   }
   return (
     <div
@@ -33,7 +37,13 @@ const Column: FC<ColumnI> = ({ type, todos, setTodos }) => {
       </h1>
       <ul className="pt-3 flex flex-col gap-2">
         {items.map((item) => (
-          <Todo key={item.id} {...item} fulfill={fulfill} />
+          <Todo
+            key={item.id}
+            {...item}
+            fulfillTodo={fulfillTodo}
+            deleteTodo={deleteTodo}
+            setFlipped={setFlipped!}
+          />
         ))}
       </ul>
     </div>

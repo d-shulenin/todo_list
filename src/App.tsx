@@ -38,7 +38,12 @@ function App() {
             setFlipped={setFlipped}
             setTodos={setTodos}
           />
-          <Backside setFlipped={setFlipped} todos={todos} setTodos={setTodos} />
+          <Backside
+            flipped={flipped}
+            setFlipped={setFlipped}
+            todos={todos}
+            setTodos={setTodos}
+          />
         </div>
       </div>
     </div>

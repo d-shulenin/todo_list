@@ -15,8 +15,13 @@ const Frontside: FC<FrontsideI> = ({ date, todos, setTodos, setFlipped }) => {
     <div className="absolute w-full h-full bg-wr pt-5 pb-10 flex flex-col gap-6 rounded-xl shadow-wrapper backface-visibility-hidden">
       <Header date={date} setFlipped={setFlipped} />
       <div className="px-2 grid grid-cols-2 gap-7 flex-grow">
-        <Column type="to do" todos={todos} setTodos={setTodos} />
-        <Column type="done" todos={todos} setTodos={setTodos} />
+        <Column
+          type="to do"
+          todos={todos}
+          setTodos={setTodos}
+          setFlipped={setFlipped}
+        />
+        <Column type="done" todos={todos} />
       </div>
     </div>
   );
