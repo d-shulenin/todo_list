@@ -28,14 +28,14 @@ const Column: FC<ColumnI> = ({ type, todos, setTodos, setFlipped }) => {
   }
   return (
     <div
-      className={`rounded-xl shadow-column px-6 pt-6 pb-4 ${
+      className={`max-h-96 rounded-xl shadow-column pt-6 flex flex-col ${
         type === "to do" ? " bg-todo_wr_bg" : "bg-done_wr_bg"
       }`}
     >
-      <h1 className="w-2/3 first-letter:uppercase text-3xl pb-3 font-semibold border-b-2 border-black/30">
+      <h1 className="w-1/2 ml-6 first-letter:uppercase text-3xl pb-3 font-semibold border-b-2 border-black/30">
         {type}
       </h1>
-      <ul className="pt-3 flex flex-col gap-2">
+      <ul className="px-3 pt-3 pb-4 flex flex-col gap-2 overflow-auto scrollbar-none">
         {items.map((item) => (
           <Todo
             key={item.id}

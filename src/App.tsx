@@ -25,7 +25,7 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   return (
-    <div className="w-full h-screen bg-bg flex justify-center items-center text-typo">
+    <div className="w-full min-h-screen bg-bg flex justify-center items-center text-typo">
       <div className="w-2/5 h-85vh perspective-1000">
         <div
           className={`relative w-full h-full transition-transform duration-700 preserve-3d ${

@@ -12,9 +12,9 @@ interface FrontsideI {
 
 const Frontside: FC<FrontsideI> = ({ date, todos, setTodos, setFlipped }) => {
   return (
-    <div className="absolute w-full h-full bg-wr pt-5 pb-10 flex flex-col gap-6 rounded-xl shadow-wrapper backface-visibility-hidden">
+    <div className="absolute w-full h-full bg-wr pt-5 flex flex-col gap-6 rounded-xl shadow-wrapper backface-visibility-hidden">
       <Header date={date} setFlipped={setFlipped} />
-      <div className="px-2 grid grid-cols-2 gap-7 flex-grow">
+      <div className="px-2 grid grid-cols-2 gap-6 flex-grow">
         <Column
           type="to do"
           todos={todos}
