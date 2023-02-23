@@ -5,6 +5,7 @@ import { TodoI } from "../../App";
 interface ColumnI {
   type: "to do" | "done";
   todos: TodoI[];
+  priorities: string[];
   setTodos?: Dispatch<React.SetStateAction<TodoI[]>>;
   setFlipped?: Dispatch<React.SetStateAction<boolean>>;
 }
@@ -14,10 +15,21 @@ const isDone: Record<string, boolean> = {
   done: true,
 };
 
-const Column: FC<ColumnI> = ({ type, todos, setTodos, setFlipped }) => {
+const Column: FC<ColumnI> = ({
+  type,
+  todos,
+  priorities,
+  setTodos,
+  setFlipped,
+}) => {
   const items = useMemo(
-    () => todos.filter((todo: TodoI) => todo.done === isDone[type]),
-    [todos]
+    () =>
+      todos.filter(
+        (todo: TodoI) =>
+          todo.done === isDone[type] &&
+          (priorities.length ? priorities.includes(todo.priority) : true)
+      ),
+    [todos, priorities]
   );
   function fulfillTodo(props: TodoI): void {
     const restTodos = todos.filter((todo) => todo.id !== props.id);

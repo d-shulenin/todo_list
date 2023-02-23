@@ -1,5 +1,5 @@
-export function getDate(): string {
-  return new Date().toLocaleDateString("en-gb", {
+export function getDate(date: Date): string {
+  return date.toLocaleDateString("en-gb", {
     month: "long",
     day: "numeric",
   });

@@ -39,6 +39,15 @@ const perspective = plugin(function ({ addUtilities }) {
   });
 });
 
+// Border utilities
+const border = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".border-1": {
+      "border-width": "1px",
+    },
+  });
+});
+
 module.exports = {
   content: ["./src/**/*.{html,ts,tsx}"],
   theme: {
@@ -47,8 +56,9 @@ module.exports = {
         "85vh": "85vh",
       },
       boxShadow: {
+        calendar: "12px 12px 16px rgba(0,0,0,0.3)",
         done: "5px 5px 6px 0px #ddaa8e",
-        todos: "5px 5px 6px 0px #d6b47d",
+        todos: "5px 5px 5px 0px #d6b47d",
         controls: "2px 2px 4px 0px #ceaa77",
         column: "12px 12px 25px 0px rgba(0,0,0,0.5)",
         button: "3px 3px 5px 0px #ceaa77",
@@ -73,5 +83,6 @@ module.exports = {
     transformStyle,
     perspective,
     backfaceVisibility,
+    border,
   ],
 };

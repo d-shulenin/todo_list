@@ -1,18 +1,24 @@
 import { FC, FormEvent, Dispatch, useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import { TodoI } from "../../App";
-import { getDate } from "../../utilities/getDate";
 import back from "./../../assets/icons/back.png";
 import RadioButton from "../RadioButton/RadioButton";
 
 interface BacksideI {
+  date: Date;
   flipped: boolean;
   todos: TodoI[];
   setFlipped: Dispatch<React.SetStateAction<boolean>>;
   setTodos: Dispatch<React.SetStateAction<TodoI[]>>;
 }
 
-const Backside: FC<BacksideI> = ({ flipped, todos, setFlipped, setTodos }) => {
+const Backside: FC<BacksideI> = ({
+  flipped,
+  todos,
+  date,
+  setFlipped,
+  setTodos,
+}) => {
   const [edited, setEdited] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [priority, setPriority] = useState<string>("");
@@ -35,7 +41,7 @@ const Backside: FC<BacksideI> = ({ flipped, todos, setFlipped, setTodos }) => {
       setEdited("");
       localStorage.setItem("edited", "");
     } else {
-      const date = getDate();
+      console.log(date);
       if (value.trim()) {
         const newTodo: TodoI = {
           id: nanoid(),
