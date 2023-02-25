@@ -30,13 +30,14 @@ const Frontside: FC<FrontsideI> = ({
       />
       <div className="px-2 grid grid-cols-2 gap-6 flex-grow">
         <Column
+          date={date}
           priorities={priorities}
           type="to do"
           todos={todos}
           setTodos={setTodos}
           setFlipped={setFlipped}
         />
-        <Column priorities={priorities} type="done" todos={todos} />
+        <Column date={date} priorities={priorities} type="done" todos={todos} />
       </div>
     </div>
   );

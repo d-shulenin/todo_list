@@ -50,7 +50,7 @@ const Header: FC<HeaderI> = ({
         </button>
         {calendar && (
           <Calendar
-            className="absolute shadow-calendar leading-6 p-2 bg-btn w-64 rounded-lg text-black"
+            className="absolute top-16 shadow-calendar leading-6 p-2 bg-btn w-64 rounded-lg text-black"
             onChange={changeDate}
             value={date}
           />

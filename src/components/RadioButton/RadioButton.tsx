@@ -14,12 +14,12 @@ const RadioButton: FC<RadioButtonI> = ({ priority, setPriority }) => {
     setPriority(target.value);
   }
   return (
-    <div className="w-full flex bg-todo_wr_bg">
+    <div className="w-full flex bg-todo_wr_bg rounded-md">
       {options.map((option) => (
         <button
           key={option}
           className={`flex-1 p-1 first-letter:uppercase transition-all duration-300 ${
-            option === priority && "bg-btn scale-105 rounded-md shadow-button"
+            option === priority && "bg-btn rounded-md shadow-button"
           }`}
           value={option}
           onClick={clickHandler}

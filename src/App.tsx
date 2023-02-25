@@ -6,7 +6,7 @@ export interface TodoI {
   id: string;
   text: string;
   priority: string;
-  date: Date;
+  date: string;
   done: boolean;
 }
 
@@ -19,9 +19,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
   return (
     <div className="w-full min-h-screen bg-bg flex justify-center items-center text-typo">
       <div className="w-2/5 h-85vh perspective-1000">

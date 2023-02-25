@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { TodoI } from "../../App";
 import back from "./../../assets/icons/back.png";
 import RadioButton from "../RadioButton/RadioButton";
+import { getDate } from "../../utilities/getDate";
 
 interface BacksideI {
   date: Date;
@@ -41,13 +42,12 @@ const Backside: FC<BacksideI> = ({
       setEdited("");
       localStorage.setItem("edited", "");
     } else {
-      console.log(date);
       if (value.trim()) {
         const newTodo: TodoI = {
           id: nanoid(),
           text: value,
           priority,
-          date,
+          date: getDate(date),
           done: false,
         };
         setTodos([...todos, newTodo]);
@@ -77,11 +77,11 @@ const Backside: FC<BacksideI> = ({
         <img className="w-4/6" src={back} alt="back"></img>
       </button>
       <form
-        className="w-2/3 self-center flex flex-col my-auto items-center gap-3 rounded-xl"
+        className="w-2/3 self-center flex flex-col my-auto items-center gap-6 rounded-xl"
         onSubmit={submit}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-xl font-medium">Add new todo</h2>
+        <h2 className="text-2xl font-semibold uppercase">Add new todo</h2>
         <input
           autoFocus
           className="p-1 pl-2 w-full outline-none"
@@ -90,9 +90,12 @@ const Backside: FC<BacksideI> = ({
           onChange={(e) => setValue(e.target.value)}
           placeholder="To do..."
         ></input>
-        <h3 className=" self-start">Priority</h3>
-        <RadioButton priority={priority} setPriority={setPriority} />
-        <button className="bg-btn w-full rounded-md shadow-button p-2">
+        <h3 className=" font-medium self-start">Todo date: {getDate(date)}</h3>
+        <div className="w-full flex flex-col gap-3">
+          <h3 className="self-start">Choose priority</h3>
+          <RadioButton priority={priority} setPriority={setPriority} />
+        </div>
+        <button className="bg-btn w-full rounded-md shadow-button p-2 font-semibold active:scale-105">
           Submit
         </button>
       </form>

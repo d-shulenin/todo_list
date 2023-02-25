@@ -1,11 +1,13 @@
 import { FC, useMemo, Dispatch } from "react";
 import Todo from "../Todo/Todo";
 import { TodoI } from "../../App";
+import { getDate } from "../../utilities/getDate";
 
 interface ColumnI {
   type: "to do" | "done";
   todos: TodoI[];
   priorities: string[];
+  date: Date;
   setTodos?: Dispatch<React.SetStateAction<TodoI[]>>;
   setFlipped?: Dispatch<React.SetStateAction<boolean>>;
 }
@@ -19,6 +21,7 @@ const Column: FC<ColumnI> = ({
   type,
   todos,
   priorities,
+  date,
   setTodos,
   setFlipped,
 }) => {
@@ -27,9 +30,10 @@ const Column: FC<ColumnI> = ({
       todos.filter(
         (todo: TodoI) =>
           todo.done === isDone[type] &&
-          (priorities.length ? priorities.includes(todo.priority) : true)
+          (priorities.length ? priorities.includes(todo.priority) : true) &&
+          getDate(date) === todo.date
       ),
-    [todos, priorities]
+    [todos, priorities, date]
   );
   function fulfillTodo(props: TodoI): void {
     const restTodos = todos.filter((todo) => todo.id !== props.id);
