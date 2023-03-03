@@ -33,8 +33,8 @@ const backfaceVisibility = plugin(function ({ addUtilities }) {
 // Perspective utilities
 const perspective = plugin(function ({ addUtilities }) {
   addUtilities({
-    ".perspective-1000": {
-      perspective: "1000px",
+    ".perspective-2000": {
+      perspective: "2000px",
     },
   });
 });
@@ -54,8 +54,10 @@ module.exports = {
     extend: {
       spacing: {
         "85vh": "85vh",
+        18: "4.5rem",
       },
       boxShadow: {
+        select: "8px 8px 12px rgba(0,0,0,0.3)",
         calendar: "12px 12px 16px rgba(0,0,0,0.3)",
         done: "5px 5px 6px 0px #ddaa8e",
         todos: "5px 5px 5px 0px #d6b47d",

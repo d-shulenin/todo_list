@@ -19,10 +19,10 @@ const Select: FC<SelectI> = ({ select, priorities, setPriorities }) => {
     );
   }
   return select ? (
-    <div className="absolute p-2 pr-4 rounded-lg bg-btn left-16 text-black flex flex-col items-start gap-1 text-sm">
+    <div className="shadow-select overflow-hidden absolute rounded-lg bg-btn left-18 text-black flex flex-col items-start text-sm">
       {options.map((option) => (
         <button
-          className={`first-letter:uppercase hover:bg-todo_wr_bg ${
+          className={`w-full first-letter:uppercase px-3 py-1 hover:bg-todo_wr_bg ${
             priorities.includes(option) && "font-semibold"
           }`}
           key={option}

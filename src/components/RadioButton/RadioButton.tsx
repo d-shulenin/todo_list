@@ -18,7 +18,7 @@ const RadioButton: FC<RadioButtonI> = ({ priority, setPriority }) => {
       {options.map((option) => (
         <button
           key={option}
-          className={`flex-1 p-1 first-letter:uppercase transition-all duration-300 ${
+          className={`flex-1 p-2 first-letter:uppercase transition-all duration-300 ${
             option === priority && "bg-btn rounded-md shadow-button"
           }`}
           value={option}
