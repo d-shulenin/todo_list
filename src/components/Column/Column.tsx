@@ -44,7 +44,7 @@ const Column: FC<ColumnI> = ({
   }
   return (
     <div
-      className={`max-h-96 rounded-xl shadow-column pt-6 flex flex-col ${
+      className={`rounded-xl shadow-column pt-6 flex flex-col ${
         type === "to do" ? " bg-todo_wr_bg" : "bg-done_wr_bg"
       }`}
     >

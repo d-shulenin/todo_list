@@ -69,7 +69,7 @@ const Backside: FC<BacksideI> = ({
     } catch (e) {}
   }, [flipped]);
   return (
-    <div className="absolute w-full h-full rotate-y-180 px-7 pt-5 pb-10 backface-visibility-hidden bg-wr text-typo rounded-xl shadow-wrapper flex flex-col">
+    <div className="absolute w-full h-full rotate-y-180 sm:px-7 xs:px-4 pt-5 pb-10 backface-visibility-hidden bg-wr text-typo rounded-xl shadow-wrapper flex flex-col">
       <button
         className="w-8 h-8 bg-btn rounded-md flex justify-center items-center cursor-pointer shadow-button active:scale-95"
         onClick={goBack}
@@ -90,8 +90,8 @@ const Backside: FC<BacksideI> = ({
           onChange={(e) => setValue(e.target.value)}
           placeholder="To do..."
         ></input>
-        <div className="w-full flex gap-2 items-center">
-          <h3 className="font-medium">Priority:</h3>
+        <div className="w-full flex flex-col gap-2 items-center">
+          <h3 className="font-medium self-start">Priority:</h3>
           <RadioButton priority={priority} setPriority={setPriority} />
         </div>
         <h3 className="font-medium self-start">Todo date: {getDate(date)}</h3>

@@ -51,6 +51,10 @@ const border = plugin(function ({ addUtilities }) {
 module.exports = {
   content: ["./src/**/*.{html,ts,tsx}"],
   theme: {
+    screens: {
+      xs: "320px",
+      sm: "640px",
+    },
     extend: {
       spacing: {
         "85vh": "85vh",

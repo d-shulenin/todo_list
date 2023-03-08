@@ -28,7 +28,7 @@ const Frontside: FC<FrontsideI> = ({
         priorities={priorities}
         setPriorities={setPriorities}
       />
-      <div className="px-2 grid grid-cols-2 gap-6 flex-grow">
+      <div className="sm:px-2 xs:px-4 grid sm:grid-cols-2 xs:grid-cols-1 gap-6 sm:pb-10 xs:pb-5 flex-grow">
         <Column
           date={date}
           priorities={priorities}

@@ -21,7 +21,7 @@ function App() {
   }, [todos]);
   return (
     <div className="w-full h-screen bg-bg flex justify-center items-center text-typo">
-      <div className="w-2/5 h-85vh perspective-2000">
+      <div className="xs:w-4/5 sm:w-2/5 h-85vh perspective-2000">
         <div
           className={`relative w-full h-full transition-transform duration-700 preserve-3d ${
             flipped && "rotate-y-180"
@@ -43,7 +43,9 @@ function App() {
           />
         </div>
       </div>
-      <span className="absolute bottom-3 right-3">Designed by Midjourney</span>
+      <span className="absolute sm:bottom-3 sm:top-auto xs:top-[calc(100vh-2rem)] sm:right-3 xs:rigth-1/2">
+        Designed by Midjourney
+      </span>
     </div>
   );
 }
